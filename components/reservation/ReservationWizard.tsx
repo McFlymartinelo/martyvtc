@@ -280,7 +280,7 @@ export function ReservationWizard() {
                       allowed={["paris", "banlieue", "cdg", "orly", "beauvais"]}
                     />
                     <div>
-                      <label htmlFor="arrivee" className="label">Adresse d'arrivée</label>
+                      <label htmlFor="arrivee" className="label">Adresse d&apos;arrivée</label>
                       <input id="arrivee" className="field" placeholder="Destination" {...form.register("arrivee")} />
                       {form.formState.errors.arrivee && <p className="mt-2 text-sm text-danger">{form.formState.errors.arrivee.message}</p>}
                     </div>
@@ -339,8 +339,8 @@ export function ReservationWizard() {
                     <label className="flex items-start gap-3 border border-line p-4 text-sm">
                       <input type="checkbox" className="mt-1" {...form.register("attenteApresVol")} />
                       <span>
-                        <strong>Prise en charge 45 min après l’atterrissage</strong>
-                        <span className="mt-1 block text-muted">Je suis au meeting point, bagages inclus. Pas d’attente facturée.</span>
+                        <strong>Prise en charge 45 min après l&apos;atterrissage</strong>
+                        <span className="mt-1 block text-muted">Je suis au meeting point, bagages inclus. Pas d&apos;attente facturée.</span>
                       </span>
                     </label>
                   </>
@@ -382,7 +382,7 @@ export function ReservationWizard() {
                 <label className="flex items-start gap-3 border border-line p-4 text-sm">
                   <input type="checkbox" className="mt-1" {...form.register("pourAutrui")} />
                   <span>
-                    <strong>Réserver pour quelqu’un d’autre</strong>
+                    <strong>Réserver pour quelqu&apos;un d&apos;autre</strong>
                     <span className="mt-1 block text-muted">Vous payez, le passager est pris en charge.</span>
                   </span>
                 </label>

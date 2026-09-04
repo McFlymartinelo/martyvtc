@@ -14,7 +14,7 @@ export function QuoteCard({ quote }: { quote: Quote }) {
         {quote.siegeEnfantCents > 0 && <li>Siège enfant {formatEuros(quote.siegeEnfantCents)}</li>}
         {brand.acomptePourcent < 100 && <li>À régler maintenant {formatEuros(quote.aReglerCents)}</li>}
       </ul>
-      <p className="mt-4 text-xs text-muted">Prix confirmé à la réservation. Annulation gratuite jusqu’à 4 h avant.</p>
+      <p className="mt-4 text-xs text-muted">Prix confirmé à la réservation. Annulation gratuite jusqu&apos;à 4 h avant.</p>
     </aside>
   );
 }
