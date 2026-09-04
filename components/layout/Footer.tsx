@@ -36,9 +36,19 @@ export function Footer() {
           )}
         </div>
       </div>
-      <div className="site-wrap flex justify-between border-t border-line py-6 text-xs text-muted">
+      <div className="site-wrap flex flex-col gap-3 border-t border-line py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
         <span>© {new Date().getFullYear()} {brand.legalName}</span>
-        <span>Marque blanche — tout passe par config/brand.ts</span>
+        <div className="flex flex-wrap gap-x-4 gap-y-1">
+          <Link href="/mentions-legales" className="hover:text-accent">
+            Mentions légales
+          </Link>
+          <Link href="/cgv" className="hover:text-accent">
+            CGV
+          </Link>
+          <Link href="/confidentialite" className="hover:text-accent">
+            Confidentialité
+          </Link>
+        </div>
       </div>
     </footer>
   );

@@ -6,13 +6,41 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { Reveal } from "@/components/ui/Reveal";
 import { brand } from "@/config/brand";
+import { getHomeStats } from "@/lib/stats";
+import { siteUrl } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const stats = await getHomeStats();
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TaxiService",
+    name: brand.legalName,
+    description: brand.description,
+    url: siteUrl(),
+    telephone: brand.contact.telephone,
+    email: brand.contact.email,
+    areaServed: brand.contact.zone,
+    address: { "@type": "PostalAddress", addressLocality: brand.contact.ville, addressCountry: "FR" },
+    ...(brand.stats.trajets > 0 && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: stats.note,
+        reviewCount: stats.trajets,
+      },
+    }),
+  };
+
   return (
     <>
-      <Hero />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <Hero stats={stats} />
       <Services />
       <Reviews />
       <AvailabilityPreview />

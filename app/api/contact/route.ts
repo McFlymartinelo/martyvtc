@@ -12,6 +12,12 @@ export async function POST(request: Request) {
     );
   }
 
+  // Piège anti-spam : un champ invisible pour les humains, souvent rempli par les bots.
+  // On répond "ok" sans rien envoyer pour ne pas les alerter.
+  if (parsed.data.societe) {
+    return NextResponse.json({ ok: true });
+  }
+
   await envoyerMessageContact(parsed.data);
   return NextResponse.json({ ok: true });
 }

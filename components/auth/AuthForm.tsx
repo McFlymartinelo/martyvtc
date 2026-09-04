@@ -117,6 +117,17 @@ export function InscriptionForm() {
         {form.formState.errors.confirmation && <p className="mt-2 text-sm text-danger">{form.formState.errors.confirmation.message}</p>}
       </div>
       {error && <p className="text-sm text-danger">{error}</p>}
+      <p className="text-xs text-muted">
+        En créant un compte, vous acceptez nos{" "}
+        <Link href="/cgv" className="text-accent hover:underline">
+          CGV
+        </Link>{" "}
+        et notre{" "}
+        <Link href="/confidentialite" className="text-accent hover:underline">
+          politique de confidentialité
+        </Link>
+        .
+      </p>
       <MagneticButton type="submit">Créer le compte</MagneticButton>
       <p className="text-sm text-muted">
         Déjà client ? <Link href="/connexion" className="text-accent">Connexion</Link>

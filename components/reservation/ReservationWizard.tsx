@@ -486,8 +486,19 @@ export function ReservationWizard() {
                     </dd>
                   </div>
                   <div>
-                    <dt className="label">{brand.paiementAvantCourse ? "À régler" : "Estimation"}</dt>
+                    <dt className="label">
+                      {brand.paiementAvantCourse && brand.acomptePourcent < 100
+                        ? `Acompte à régler (${brand.acomptePourcent}%)`
+                        : brand.paiementAvantCourse
+                          ? "À régler"
+                          : "Estimation"}
+                    </dt>
                     <dd className="font-display text-2xl">{formatEuros(quote.aReglerCents)}</dd>
+                    {brand.paiementAvantCourse && brand.acomptePourcent < 100 && (
+                      <p className="mt-1 text-xs text-muted">
+                        Puis {formatEuros(quote.totalCents - quote.aReglerCents)} au chauffeur, trajet {formatEuros(quote.totalCents)}.
+                      </p>
+                    )}
                   </div>
                 </dl>
                 {values.pourAutrui && (

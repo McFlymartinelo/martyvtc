@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 import { contactSchema, type ContactInput } from "@/lib/validations/contact";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
@@ -11,7 +12,7 @@ export function ContactForm() {
   const [error, setError] = useState<string>();
   const form = useForm<ContactInput>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { nom: "", email: "", telephone: "", message: "" },
+    defaultValues: { nom: "", email: "", telephone: "", message: "", consentement: undefined, societe: "" },
   });
 
   const onSubmit = form.handleSubmit(async (values) => {
@@ -36,6 +37,14 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="grid gap-5">
+      <input
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+        {...form.register("societe")}
+      />
       <div>
         <label htmlFor="nom" className="label">Nom</label>
         <input id="nom" className="field" {...form.register("nom")} />
@@ -55,6 +64,19 @@ export function ContactForm() {
         <textarea id="message" rows={5} className="field" {...form.register("message")} />
         {form.formState.errors.message && <p className="mt-2 text-sm text-danger">{form.formState.errors.message.message}</p>}
       </div>
+      <label className="flex items-start gap-3 border border-line p-4 text-sm">
+        <input type="checkbox" className="mt-1" {...form.register("consentement")} />
+        <span>
+          J&apos;accepte que ces informations soient utilisées pour me recontacter, conformément à la{" "}
+          <Link href="/confidentialite" className="text-accent hover:underline">
+            politique de confidentialité
+          </Link>
+          .
+        </span>
+      </label>
+      {form.formState.errors.consentement && (
+        <p className="text-sm text-danger">{form.formState.errors.consentement.message}</p>
+      )}
       {error && <p className="text-sm text-danger">{error}</p>}
       <MagneticButton type="submit">Envoyer</MagneticButton>
     </form>

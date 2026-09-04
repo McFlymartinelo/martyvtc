@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { brand } from "@/config/brand";
+import type { HomeStats } from "@/lib/stats";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
@@ -16,7 +17,7 @@ const fade = {
   }),
 };
 
-export function Hero() {
+export function Hero({ stats }: { stats: HomeStats }) {
   return (
     <section className="relative min-h-[100svh] overflow-hidden pt-24">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,color-mix(in_srgb,var(--accent)_12%,transparent),transparent_52%)]" />
@@ -75,19 +76,19 @@ export function Hero() {
           <div>
             <dt className="text-xs uppercase tracking-[0.16em] text-muted">Trajets</dt>
             <dd className="font-display text-3xl font-semibold">
-              <AnimatedCounter value={brand.stats.trajets} />
+              <AnimatedCounter value={stats.trajets} />
             </dd>
           </div>
           <div>
             <dt className="text-xs uppercase tracking-[0.16em] text-muted">Note</dt>
             <dd className="font-display text-3xl font-semibold">
-              <AnimatedCounter value={brand.stats.note} decimals={1} />
+              <AnimatedCounter value={stats.note} decimals={1} />
             </dd>
           </div>
           <div>
             <dt className="text-xs uppercase tracking-[0.16em] text-muted">Ponctualité</dt>
             <dd className="font-display text-3xl font-semibold">
-              <AnimatedCounter value={brand.stats.ponctualite} suffix="%" />
+              <AnimatedCounter value={stats.ponctualite} suffix="%" />
             </dd>
           </div>
         </motion.dl>

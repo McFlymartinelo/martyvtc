@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Space_Grotesk } from "next/font/google";
 import { brand } from "@/config/brand";
 import { AppProviders } from "@/components/providers/AppProviders";
+import { siteUrl } from "@/lib/utils";
 import "./globals.css";
 
 const display = Space_Grotesk({
@@ -18,11 +19,25 @@ const body = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl()),
   title: {
     default: `${brand.name} — ${brand.tagline}`,
     template: `%s · ${brand.name}`,
   },
   description: brand.description,
+  keywords: [`VTC ${brand.contact.ville}`, "chauffeur privé", "VTC aéroport", brand.contact.zone],
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: brand.name,
+    title: `${brand.name} — ${brand.tagline}`,
+    description: brand.description,
+  },
+  twitter: {
+    card: "summary",
+    title: `${brand.name} — ${brand.tagline}`,
+    description: brand.description,
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -12,7 +12,12 @@ export function QuoteCard({ quote }: { quote: Quote }) {
         <li>Base {formatEuros(quote.baseCents)}</li>
         {quote.estNuit && <li>Supplément nuit {formatEuros(quote.supplementNuitCents)}</li>}
         {quote.siegeEnfantCents > 0 && <li>Siège enfant {formatEuros(quote.siegeEnfantCents)}</li>}
-        {brand.acomptePourcent < 100 && <li>À régler maintenant {formatEuros(quote.aReglerCents)}</li>}
+        {brand.acomptePourcent < 100 && (
+          <>
+            <li>Acompte en ligne ({brand.acomptePourcent}%) {formatEuros(quote.aReglerCents)}</li>
+            <li>Solde au chauffeur {formatEuros(quote.totalCents - quote.aReglerCents)}</li>
+          </>
+        )}
       </ul>
       <p className="mt-4 text-xs text-muted">Prix confirmé à la réservation. Annulation gratuite jusqu&apos;à 4 h avant.</p>
     </aside>

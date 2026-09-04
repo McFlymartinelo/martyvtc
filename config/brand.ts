@@ -34,7 +34,7 @@ export const brand = {
     linkedin: "",
   },
   paiementAvantCourse: true,
-  acomptePourcent: 100,
+  acomptePourcent: 30,
   stats: {
     trajets: 128,
     note: 4.9,
