@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.gitignore
+*.md
+.env
+.env.*
+!.env.example
+.cursor
+.claude
+agent-transcripts
+terminals
+docker-compose*.yml
+deploy
+!deploy/Caddyfile
+scripts
