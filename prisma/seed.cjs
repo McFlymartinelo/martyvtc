@@ -37,8 +37,12 @@ async function main() {
     },
   });
 
+  // Fenêtre glissante d'ouverture des créneaux à partir d'aujourd'hui. Ce script doit être
+  // relancé régulièrement (ex. via un cron) pour que des créneaux restent toujours disponibles
+  // — sinon, une fois cette fenêtre écoulée, plus aucun créneau futur n'apparaît en réservation.
+  const JOURS_OUVERTURE = 60;
   const start = new Date();
-  for (let i = 1; i <= 21; i += 1) {
+  for (let i = 1; i <= JOURS_OUVERTURE; i += 1) {
     const day = addDays(start, i);
     const weekday = day.getDay();
     if (weekday === 0) continue;
